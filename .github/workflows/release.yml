@@ -1,0 +1,66 @@
+name: 🚀 Release
+
+on:
+  push:
+    tags:
+      - '1.*'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥  Checkout
+        uses: actions/checkout@v4
+
+      - name: 🛠 Install .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.x
+            9.x
+            10.x
+
+      - name: 🔄  Restore
+        run: dotnet restore ChilliCream.Snowflake.sln
+
+      - name: 🏗️  Build
+        run: dotnet build ChilliCream.Snowflake.sln --configuration Release --no-restore
+
+      - name: ✅  Test
+        run: dotnet test ChilliCream.Snowflake.sln --configuration Release --no-build --logger trx
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📥  Checkout
+        uses: actions/checkout@v4
+
+      - name: 🛠 Install .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.x
+            9.x
+            10.x
+
+      - name: 💾  Restore
+        run: dotnet restore ChilliCream.Snowflake.sln
+
+      - name: 🏗️  Build (Release)
+        run: dotnet build src/ChilliCream.Snowflake.csproj -c Release --no-restore
+
+      - name: 📦  Pack
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/} 
+          dotnet pack src/ChilliCream.Snowflake.csproj \
+            --configuration Release \
+            --no-build \
+            -p:PackageVersion=$VERSION \
+            -o ./artifacts
+
+      - name: 🚀  Push to NuGet
+        run: dotnet nuget push ./artifacts/*.nupkg \
+              --api-key ${{ secrets.NUGET_API_KEY }} \
+              --source https://api.nuget.org/v3/index.json \
+              --skip-duplicate
