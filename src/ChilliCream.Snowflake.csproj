@@ -4,6 +4,35 @@
     <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0;netstandard2.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    
+    <PackageId>ChilliCream.Snowflake</PackageId>
+    <Version>0.0.0</Version>
+
+    <Authors>ChilliCream authors and contributors</Authors>
+    <Company>ChilliCream Inc.</Company>
+    <Copyright>Copyright &#169; 2021 ChilliCream Inc.</Copyright>
+    
+    <PackageDescription>Lock-free, high-throughput 64-bit Snowflake ID generator for .NET.</PackageDescription>                             <!-- 🔧 -->
+    <PackageTags>snowflake;id;guid;distributed</PackageTags>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/ChilliCream/Snowflake</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/ChilliCream/Snowflake</PackageProjectUrl>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="../README.md" Pack="true" PackagePath="" />
+    <None Include="../logo.png"  Pack="true" PackagePath=""/>
+  </ItemGroup>
 
 </Project>
