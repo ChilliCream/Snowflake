@@ -21,13 +21,13 @@ jobs:
             10.x
 
       - name: 🔄  Restore
-        run: dotnet restore ChilliCream.Snowflake.sln
+        run: dotnet restore ChilliCream.Snowflake.slnx
 
       - name: 🏗️  Build
-        run: dotnet build ChilliCream.Snowflake.sln --configuration Release --no-restore
+        run: dotnet build ChilliCream.Snowflake.slnx --configuration Release --no-restore
 
       - name: ✅  Test
-        run: dotnet test ChilliCream.Snowflake.sln --configuration Release --no-build --logger trx
+        run: dotnet test ChilliCream.Snowflake.slnx --configuration Release --no-build --logger trx
 
   publish:
     needs: test
@@ -45,7 +45,7 @@ jobs:
             10.x
 
       - name: 💾  Restore
-        run: dotnet restore ChilliCream.Snowflake.sln
+        run: dotnet restore ChilliCream.Snowflake.slnx
 
       - name: 🏗️  Build (Release)
         run: dotnet build src/ChilliCream.Snowflake.csproj -c Release --no-restore
