@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/ChilliCream.Snowflake.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/ChilliCream.Snowflake.Tests.csproj" />
+  </Folder>
+</Solution>
