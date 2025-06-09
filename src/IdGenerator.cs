@@ -115,6 +115,14 @@ public sealed class IdGenerator
                        (_machineId << MachineShift) |
                         sequence;
             }
+            else
+            {
+                // If we were not successful, it means that another thread has already set a new id,
+                // so we need to spin and try again.
+                // We use a spin wait here to avoid blocking the thread, which is more efficient
+                // in a high contention scenario.
+                Thread.SpinWait(8);
+            }
         }
     }
 
