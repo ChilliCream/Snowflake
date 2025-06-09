@@ -1,7 +1,7 @@
 ﻿/// <summary>
 /// A lock-free, thread-safe, 64-bit ID generator that follows the Snowflake ID 
 /// format which is based on twitters algorithm.
-/// https://sharief007.github.io/dev-docs/low-level-design/snowflake
+/// https://blog.x.com/engineering/en_us/a/2010/announcing-snowflake
 /// </summary>
 public sealed class IdGenerator
 {
